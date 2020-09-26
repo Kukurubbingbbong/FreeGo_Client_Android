@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="645dp"
+    android:background="#1B76FF"
+    tools:context=".GuideFragment1">
+
+
+    <ImageView
+        android:id="@+id/guide1Image1"
+        android:layout_width="250dp"
+        android:layout_height="400dp"
+        android:layout_marginStart="41dp"
+        android:layout_marginTop="88dp"
+        android:src="@drawable/guide1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.05"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/guide1Button"
+        android:layout_width="97dp"
+        android:layout_height="109dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="72dp"
+        android:src="@drawable/guide1_button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <TextView
+        android:id="@+id/guide1Text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="40dp"
+        android:text="1. + 버튼을 눌러\n목록을 추가하세요"
+        android:textColor="#ffffff"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

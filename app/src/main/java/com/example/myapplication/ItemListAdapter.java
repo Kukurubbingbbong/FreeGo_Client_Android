@@ -73,9 +73,9 @@ public class ItemListAdapter extends BaseAdapter {
         ImageView foodImage = convertView.findViewById(R.id.foodImage);
         TextView foodTitle = convertView.findViewById(R.id.foodTitle);
         TextView foodDate = convertView.findViewById(R.id.foodDate);
-        Button btnDelete = convertView.findViewById(R.id.btnDelete);
+        TextView btnDelete = convertView.findViewById(R.id.btnDelete);
 
-        Glide.with(context).load(food.get(position).getImg_link()).into(foodImage);
+        Glide.with(context).load(food.get(position).getImg_link()).placeholder(R.drawable.loading).error(R.drawable.noimage).into(foodImage);
         foodTitle.setText(food.get(position).getP_name());
         String[] date = food.get(position).getP_ex_date().split(" ");
         Date current_date = new Date();
@@ -90,11 +90,11 @@ public class ItemListAdapter extends BaseAdapter {
 
             if(ex_date.getTime() >= current_date.getTime()){
                 date_second = ex_date.getTime() - current_date.getTime();
-                date_second = date_second / (24*60*60*10000);
+                date_second = date_second / (24*60*60*1000);
                 date_big = true;
             } else if(ex_date.getTime() < current_date.getTime()){
                 date_second = current_date.getTime() - ex_date.getTime();
-                date_second = date_second / (24*60*60*10000);
+                date_second = date_second / (24*60*60*1000);
                 date_big = false;
             }
             date_second = Math.abs(date_second);

@@ -29,7 +29,6 @@ class FridgeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_fridge)
-        val intent = intent
 
         val id = intent.getStringExtra("name")
 
@@ -47,7 +46,7 @@ class FridgeActivity : AppCompatActivity() {
                     if(response.isSuccessful) {
                         Log.d("CODE", response.body()!!.code.toString())
                         if (response.body()!!.code == 200) {
-                            dataList = response.body()!!.data!!
+                            dataList = response.body()!!.data
                             Log.d("MESSAGE", response.body()!!.message)
                             if(dataList.size == 0){
                                 itemList.setBackgroundColor(Color.GRAY)
@@ -67,12 +66,9 @@ class FridgeActivity : AppCompatActivity() {
                 intent.putExtra("p_name",dataList[position].p_name)
                 intent.putExtra("p_ex_date", dataList[position].p_ex_date)
                 intent.putExtra("p_number",dataList[position].p_number)
+                intent.putExtra("img_ling", dataList[position].img_link)
                 startActivity(intent)
             }
-        }
-        else {
-            textView3.alpha = 1f
-            itemList.setBackgroundResource(Color.GRAY)
         }
 
     }

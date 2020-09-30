@@ -8,9 +8,20 @@
     tools:context=".DetailActivity">
 
     <ImageView
-        android:id="@+id/imageView8"
+        android:id="@+id/detailImage"
         android:layout_width="match_parent"
         android:layout_height="200dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:src="@drawable/loading"
+        android:background="#555555"/>
+
+    <ImageView
+        android:id="@+id/detailImage2"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="#D0565656"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -22,6 +33,19 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView8" />
+        app:layout_constraintTop_toBottomOf="@+id/detailImage" />
+
+    <TextView
+        android:id="@+id/noRecipe"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="등록된 레시피가 없습니다"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/detailImage"
+        android:textSize="24dp"
+        android:alpha="0"
+        android:textColor="#ffffff"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

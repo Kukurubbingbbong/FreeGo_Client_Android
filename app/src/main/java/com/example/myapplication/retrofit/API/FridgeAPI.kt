@@ -3,6 +3,7 @@ package com.example.myapplication.retrofit.API
 import com.example.myapplication.retrofit.DTO.BarCodeFoodInfo
 import com.example.myapplication.retrofit.DTO.FirstData
 import com.example.myapplication.retrofit.DTO.FoodData
+import com.example.myapplication.retrofit.DTO.Recipe
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -44,6 +45,11 @@ interface FridgeAPI {
         @Field("id") id : String,
         @Field("p_name") p_name: String
     ) : Call<FirstData>
+
+    @GET("/material/recipe/{ingredient}")
+    fun getRecipe(
+        @Path("ingredient") ingredient : String
+    ) : Call<Recipe>
 
     @GET("/code/lookupcode/{code}")
     fun barCodeShow(

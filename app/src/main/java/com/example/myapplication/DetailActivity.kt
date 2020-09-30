@@ -36,8 +36,15 @@ class DetailActivity : AppCompatActivity() {
                 override fun onResponse(call: Call<Recipe>, response: Response<Recipe>) {
                     if (response.isSuccessful) {
                         if(response.body()!!.code == 200) {
+                            progressBar.visibility = View.GONE
                             recipeList.adapter = RecipeAdapter(this@DetailActivity, response.body()!!.data.foodname)
                             recipe = response.body()!!.data.recipelink
+                            if(recipe.size == 0){
+                                recipeList.setBackgroundColor(Color.GRAY)
+                                noRecipe.alpha = 1f
+                            } else {
+                                noRecipe.visibility = View.GONE
+                            }
                         }
                     }
                 }
@@ -45,10 +52,7 @@ class DetailActivity : AppCompatActivity() {
             })
         }
 
-        if(recipe.size == 0){
-            recipeList.setBackgroundColor(Color.GRAY)
-            noRecipe.alpha = 1f
-        }
+
 
         recipeList.onItemClickListener =
             AdapterView.OnItemClickListener { adapterVIew, view, position, l ->

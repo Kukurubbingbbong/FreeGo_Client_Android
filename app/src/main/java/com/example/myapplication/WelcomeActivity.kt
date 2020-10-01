@@ -10,11 +10,11 @@ class WelcomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_welcome)
 
-        val intent = intent
         name.text = intent.getStringExtra("name")
 
         register_end.setOnClickListener {
             val outIntent = Intent(this@WelcomeActivity, GuideActivity::class.java)
+            outIntent.putExtra("name", intent.getStringExtra("name"))
             startActivity(outIntent)
             finish()
             this.overridePendingTransition(R.anim.sliding_up, R.anim.stay)

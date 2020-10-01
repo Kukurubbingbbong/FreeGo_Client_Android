@@ -42,14 +42,14 @@ class SignInActivity : AppCompatActivity() {
                                 }
                             }
                             else {
-                                Toast.makeText(this@SignInActivity, "회원가입에 실패했습니다", Toast.LENGTH_LONG).show()
+                                Toast.makeText(this@SignInActivity, "로그인에 실패했습니다", Toast.LENGTH_LONG).show()
                                 Log.d("TAG1", response.code().toString())
                                 passwordCheckText.text = null
                                 IDText.text = null
                                 PwdText.text = null
                             }
                         } else {
-                            Toast.makeText(this@SignInActivity, "회원가입에 실패했습니다", Toast.LENGTH_LONG).show()
+                            Toast.makeText(this@SignInActivity, "로그인에 실패했습니다", Toast.LENGTH_LONG).show()
                             Log.d("TAG2", response.code().toString())
                             IDText.text = null
                             PwdText.text = null

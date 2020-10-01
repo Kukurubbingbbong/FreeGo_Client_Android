@@ -23,7 +23,9 @@ class GuideFragment3 : Fragment() {
         guide3Button = view.findViewById(R.id.guide3Button)
 
         guide3Button.setOnClickListener {
-            startActivity(Intent(context,FridgeActivity::class.java))
+            val intent = Intent(context,FridgeActivity::class.java)
+            intent.putExtra("name", "")
+            startActivity(intent)
             activity?.finish()
         }
 

@@ -32,6 +32,7 @@ public class GuideActivity extends FragmentActivity {
         btnSkip = findViewById(R.id.btnSkip);
         btnSkip.setOnClickListener(v -> {
             Intent intent = new Intent(getApplicationContext(), FridgeActivity.class);
+            intent.putExtra("name", getIntent().getStringExtra("name"));
             startActivity(intent);
             finish();
         });

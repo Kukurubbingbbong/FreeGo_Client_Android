@@ -34,7 +34,9 @@ class FridgeActivity : AppCompatActivity() {
 
         var dataList = ArrayList<Food>()
 
-        if(id != null){
+
+
+        if(id != ""){
             val service = RetrofitHelper().getFridgeAPI()
 
             service.getTable(id).enqueue(object : Callback<FoodData>{
@@ -60,16 +62,22 @@ class FridgeActivity : AppCompatActivity() {
                 }
             })
 
-            itemList.setOnItemClickListener{ parent: AdapterView<*>, view: View, position: Int, id: Long ->
-                val intent = Intent(this@FridgeActivity, DetailActivity::class.java)
-                intent.putExtra("p_id", dataList[position].id)
-                intent.putExtra("p_name",dataList[position].p_name)
-                intent.putExtra("p_ex_date", dataList[position].p_ex_date)
-                intent.putExtra("p_number",dataList[position].p_number)
-                intent.putExtra("img_ling", dataList[position].img_link)
-                startActivity(intent)
-            }
+
+        }
+        itemList.setOnItemClickListener{ parent: AdapterView<*>, view: View, position: Int, l: Long ->
+            val intent = Intent(this@FridgeActivity, DetailActivity::class.java)
+            intent.putExtra("p_id", dataList[position].id)
+            intent.putExtra("p_name",dataList[position].p_name)
+            intent.putExtra("p_ex_date", dataList[position].p_ex_date)
+            intent.putExtra("p_number",dataList[position].p_number)
+            intent.putExtra("img_ling", dataList[position].img_link)
+            startActivity(intent)
         }
 
+        insertButton.setOnClickListener {
+            val intent = Intent(this@FridgeActivity, SelectActivity::class.java)
+            intent.putExtra("id",id)
+            startActivity(intent)
+        }
     }
 }

@@ -71,19 +71,13 @@
             android:textSize="18dp"
             android:textColor="#000000"/>
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/dateLayout"
+        <TextView
+            android:id="@+id/datePicker"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/dateText"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:hint="상품 유통기한"
-                android:textSize="24dp" />
-        </com.google.android.material.textfield.TextInputLayout>
+            android:layout_height="wrap_content"
+            android:text="유통기한을 설정하세요"
+            android:textColor="#000000"
+            android:textSize="30sp" />
     </LinearLayout>
 
     <com.google.android.material.button.MaterialButton

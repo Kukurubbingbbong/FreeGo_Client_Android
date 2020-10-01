@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.example.embeddedtest.retrofit.DTO.DeleteFoodBody;
 import com.example.myapplication.retrofit.API.FridgeAPI;
 import com.example.myapplication.retrofit.API.RetrofitHelper;
 import com.example.myapplication.retrofit.DTO.FirstData;
@@ -114,7 +115,7 @@ public class ItemListAdapter extends BaseAdapter {
                 @Override
                 public void onAccept() {
 
-                    fridge.deleteFood(id, food.get(position).getP_name()).enqueue(new Callback<FirstData>() {
+                    fridge.deleteFood(new DeleteFoodBody(id, food.get(position).getP_name())).enqueue(new Callback<FirstData>() {
                         @Override
                         public void onResponse(Call<FirstData> call, Response<FirstData> response) {
                             Toast.makeText(context, "삭제 완료", Toast.LENGTH_LONG).show();

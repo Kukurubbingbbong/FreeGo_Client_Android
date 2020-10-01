@@ -1,5 +1,7 @@
 package com.example.myapplication.retrofit.API
 
+import com.example.embeddedtest.retrofit.DTO.DeleteFoodBody
+import com.example.embeddedtest.retrofit.DTO.InsertFoodBody
 import com.example.myapplication.retrofit.DTO.BarCodeFoodInfo
 import com.example.myapplication.retrofit.DTO.FirstData
 import com.example.myapplication.retrofit.DTO.FoodData
@@ -26,11 +28,8 @@ interface FridgeAPI {
 
     @POST("/material/insert")
     fun insertFood(
-        @Query("code") code : Int,
-        @Field("id") id : String,
-        @Field("p_name") p_name: String,
-        @Field("p_number") p_number : Int,
-        @Field("p_ex_date") p_ex_date : String
+        @Query("code") code : String,
+        @Body insertFoodBody: InsertFoodBody
     ) : Call<FirstData>
 
     @PUT("/material/update")
@@ -40,20 +39,19 @@ interface FridgeAPI {
         @Field("p_number") p_number: Int
     ) : Call<FirstData>
 
-    @DELETE("/delete")
+    @HTTP(method = "DELETE", path = "/material/delete", hasBody = true)
     fun deleteFood(
-        @Field("id") id : String,
-        @Field("p_name") p_name: String
+        @Body deleteFoodBody: DeleteFoodBody
     ) : Call<FirstData>
 
     @GET("/material/recipe/{ingredient}")
     fun getRecipe(
-        @Path("ingredient") ingredient : String
-    ) : Call<Recipe>
+        @Path("ingredient") ingredient: String
+    ): Call<Recipe>
 
     @GET("/code/lookupcode/{code}")
     fun barCodeShow(
-        @Path("code") code : Int
+        @Path("code") code : String
     ) : Call<BarCodeFoodInfo>
 
 }

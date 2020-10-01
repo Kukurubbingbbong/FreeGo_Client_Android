@@ -75,9 +75,11 @@ public class ItemListAdapter extends BaseAdapter {
         TextView foodTitle = convertView.findViewById(R.id.foodTitle);
         TextView foodDate = convertView.findViewById(R.id.foodDate);
         TextView btnDelete = convertView.findViewById(R.id.btnDelete);
+        TextView foodCount = convertView.findViewById(R.id.textCount);
 
         Glide.with(context).load(food.get(position).getImg_link()).placeholder(R.drawable.loading).error(R.drawable.noimage).into(foodImage);
         foodTitle.setText(food.get(position).getP_name());
+        foodCount.setText(food.get(position).getP_number() + "개");
         String[] date = food.get(position).getP_ex_date().split(" ");
         Date current_date = new Date();
         @SuppressLint("SimpleDateFormat") SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");

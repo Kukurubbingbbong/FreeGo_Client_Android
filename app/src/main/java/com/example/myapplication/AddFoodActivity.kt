@@ -80,9 +80,7 @@ class AddFoodActivity : AppCompatActivity() {
                             dateString
                         )
                     ).enqueue(object : Callback<FirstData> {
-                        override fun onFailure(call: Call<FirstData>, t: Throwable) {
-                            Log.d("INIT", t.toString())
-                        }
+                        override fun onFailure(call: Call<FirstData>, t: Throwable) {}
 
                         override fun onResponse(
                             call: Call<FirstData>,

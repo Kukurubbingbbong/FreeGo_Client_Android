@@ -40,14 +40,16 @@ class InsertAddActivity : AppCompatActivity() {
 
         val todayDate = format.parse(today)
         val ex_date = format.parse(date)
+        var minus = ""
+        if(todayDate.time > ex_date.time){
+            minus = "+"
+        }
 
-        insertFoodDate.text = "D-" + (todayDate.time - ex_date.time) / (24*60*60*1000)
+        insertFoodDate.text = "D" + minus + ((todayDate.time - ex_date.time) / (24*60*60*1000))
 
         insertNextButton.setOnClickListener {
             RetrofitHelper().getFridgeAPI().insertFood("nocode", InsertFoodBody(id, foodName, insertFoodCount.text.toString().toInt(), date)).enqueue(object : Callback<FirstData>{
-                override fun onFailure(call: Call<FirstData>, t: Throwable) {
-                    Log.d("ERROR", t.toString())
-                }
+                override fun onFailure(call: Call<FirstData>, t: Throwable) {}
 
                 override fun onResponse(call: Call<FirstData>, response: Response<FirstData>) {
                     if(response.isSuccessful){

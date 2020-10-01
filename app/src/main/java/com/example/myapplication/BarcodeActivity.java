@@ -72,7 +72,6 @@ public class BarcodeActivity extends AppCompatActivity {
             progressBar.setAlpha(1f);
             FridgeAPI fridgeAPI = new RetrofitHelper().getFridgeAPI();
             Intent getInt = getIntent();
-            Log.d("BARCODE", barcode);
             fridgeAPI.barCodeShow(barcode).enqueue(new Callback<BarCodeFoodInfo>() {
                 @Override
                 public void onResponse(Call<BarCodeFoodInfo> call, Response<BarCodeFoodInfo> response) {
@@ -80,7 +79,6 @@ public class BarcodeActivity extends AppCompatActivity {
                         if (response.body() != null) {
                             if(response.body().getCode() == 200) {
                                 if (response.body().getData() != null) {
-                                    Log.d("DATA", response.body().getData().get(1));
                                     Intent intent = new Intent(getApplicationContext(), AddFoodActivity.class);
                                     intent.putExtra("data", response.body().getData());
                                     intent.putExtra("barcode", barcode);
@@ -99,9 +97,7 @@ public class BarcodeActivity extends AppCompatActivity {
                 }
 
                 @Override
-                public void onFailure(Call<BarCodeFoodInfo> call, Throwable t) {
-
-                }
+                public void onFailure(Call<BarCodeFoodInfo> call, Throwable t) {}
             });
         }
     }

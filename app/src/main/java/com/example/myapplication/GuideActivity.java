@@ -17,6 +17,9 @@ import com.google.android.material.tabs.TabLayout;
 public class GuideActivity extends FragmentActivity {
 
     private ViewPager mPager;
+    GuideFragment1 guideFragment1 = new GuideFragment1();
+    GuideFragment2 guideFragment2 = new GuideFragment2();
+    GuideFragment3 guideFragment3 = new GuideFragment3();
 
     Button btnSkip;
 
@@ -28,6 +31,8 @@ public class GuideActivity extends FragmentActivity {
         setContentView(R.layout.activity_guide);
 
         MyAdapter adapter = new MyAdapter(getSupportFragmentManager());
+
+        Intent inIntent = getIntent();
 
         btnSkip = findViewById(R.id.btnSkip);
         btnSkip.setOnClickListener(v -> {
@@ -43,6 +48,9 @@ public class GuideActivity extends FragmentActivity {
 
         mPager.setAdapter(adapter);
 
+        Bundle bundle = new Bundle();
+        bundle.putString("name", inIntent.getStringExtra("name"));
+        guideFragment3.setArguments(bundle);
 
     }
 
@@ -56,9 +64,9 @@ public class GuideActivity extends FragmentActivity {
         @Override
         public Fragment getItem(int position) {
             switch (position){
-                case 0 : return new GuideFragment1();
-                case 1 : return new GuideFragment2();
-                default : return new GuideFragment3();
+                case 0 : return guideFragment1;
+                case 1 : return guideFragment2;
+                default : return guideFragment3;
             }
         }
 

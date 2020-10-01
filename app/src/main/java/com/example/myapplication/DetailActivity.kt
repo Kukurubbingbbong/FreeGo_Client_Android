@@ -29,9 +29,7 @@ class DetailActivity : AppCompatActivity() {
 
         if (ingredient != null) {
             RetrofitHelper().getFridgeAPI().getRecipe(ingredient).enqueue(object : Callback<Recipe>{
-                override fun onFailure(call: Call<Recipe>, t: Throwable) {
-                    Log.d("ERROR", t.toString())
-                }
+                override fun onFailure(call: Call<Recipe>, t: Throwable) {}
 
                 override fun onResponse(call: Call<Recipe>, response: Response<Recipe>) {
                     if (response.isSuccessful) {

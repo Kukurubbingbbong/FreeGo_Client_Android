@@ -10,6 +10,7 @@ import android.view.View
 import android.widget.AdapterView
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
@@ -21,48 +22,22 @@ import kotlinx.android.synthetic.main.activity_fridge.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import kotlin.concurrent.timer
 
 class FridgeActivity : AppCompatActivity() {
 
+    var id = ""
+    var dataList = ArrayList<Food>()
 
     @SuppressLint("ResourceType")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_fridge)
 
-        val id = intent.getStringExtra("name")
+        id = intent.getStringExtra("name")
 
-        var dataList = ArrayList<Food>()
-
-
-
-        if(id != ""){
-            val service = RetrofitHelper().getFridgeAPI()
-
-            service.getTable(id).enqueue(object : Callback<FoodData>{
-                override fun onFailure(call: Call<FoodData>, t: Throwable) {
-                    Log.d("ERROR",t.toString())
-                }
-
-                override fun onResponse(call: Call<FoodData>, response: Response<FoodData>) {
-                    if(response.isSuccessful) {
-                        Log.d("CODE", response.body()!!.code.toString())
-                        if (response.body()!!.code == 200) {
-                            dataList = response.body()!!.data
-                            Log.d("MESSAGE", response.body()!!.message)
-                            if(dataList.size == 0){
-                                itemList.setBackgroundColor(Color.GRAY)
-                                textView3.alpha = 1f
-                            }
-                            val adapter =
-                                ItemListAdapter(this@FridgeActivity, dataList, R.layout.food_row,id)
-                            itemList.adapter = adapter
-                        }
-                    }
-                }
-            })
-
-
+        if(id != "") {
+           change()
         }
         itemList.setOnItemClickListener{ parent: AdapterView<*>, view: View, position: Int, l: Long ->
             val intent = Intent(this@FridgeActivity, DetailActivity::class.java)
@@ -79,5 +54,56 @@ class FridgeActivity : AppCompatActivity() {
             intent.putExtra("id",id)
             startActivity(intent)
         }
+    }
+
+    fun change(){
+        val service = RetrofitHelper().getFridgeAPI()
+
+        service.getTable(id).enqueue(object : Callback<FoodData> {
+            override fun onFailure(call: Call<FoodData>, t: Throwable) {}
+
+            override fun onResponse(call: Call<FoodData>, response: Response<FoodData>) {
+                if (response.isSuccessful) {
+                    if (response.body()!!.code == 200) {
+                        dataList = response.body()!!.data
+                        if (dataList.size == 0) {
+                            itemList.setBackgroundColor(Color.GRAY)
+                            textView3.alpha = 1f
+                        } else {
+                            itemList.setBackgroundDrawable(ContextCompat.getDrawable(this@FridgeActivity, R.drawable.rectangle))
+                            textView3.alpha = 0f
+                        }
+                        val adapter =
+                            ItemListAdapter(
+                                this@FridgeActivity,
+                                dataList,
+                                R.layout.food_row,
+                                id
+                            )
+                        itemList.adapter = adapter
+                    }
+                }
+            }
+        })
+    }
+
+    override fun onPause() {
+        super.onPause()
+        change()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        change()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        change()
+    }
+
+    override fun onRestart() {
+        super.onRestart()
+        change()
     }
 }

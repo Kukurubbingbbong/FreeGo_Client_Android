@@ -31,6 +31,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+
 public class ItemListAdapter extends BaseAdapter {
 
     String id;
@@ -39,7 +40,7 @@ public class ItemListAdapter extends BaseAdapter {
     int resource;
     FridgeAPI fridge = new RetrofitHelper().getFridgeAPI();
 
-    ItemListAdapter(Context context, ArrayList<Food> food, int resource, String id){
+    public ItemListAdapter(Context context, ArrayList<Food> food, int resource, String id){
         this.context = context;
         this.food = food;
         this.resource = resource;
@@ -62,7 +63,7 @@ public class ItemListAdapter extends BaseAdapter {
         return 0;
     }
 
-    @SuppressLint({"ClickableViewAccessibility", "SetTextI18n"})
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         if(convertView == null){
@@ -70,7 +71,6 @@ public class ItemListAdapter extends BaseAdapter {
             convertView = inflater.inflate(resource, null);
         }
 
-        convertView.setOnTouchListener((v, event) -> true);
         ImageView foodImage = convertView.findViewById(R.id.foodImage);
         TextView foodTitle = convertView.findViewById(R.id.foodTitle);
         TextView foodDate = convertView.findViewById(R.id.foodDate);
@@ -91,23 +91,23 @@ public class ItemListAdapter extends BaseAdapter {
 
             if(ex_date.getTime() >= current_date.getTime()){
                 date_second = ex_date.getTime() - current_date.getTime();
-                date_second = date_second / (24*60*60*1000);
+                date_second = date_second / (24*60*60*1000) + 1;
                 date_big = true;
             } else if(ex_date.getTime() < current_date.getTime()){
                 date_second = current_date.getTime() - ex_date.getTime();
-                date_second = date_second / (24*60*60*1000);
+                date_second = date_second / (24*60*60*1000) + 1;
                 date_big = false;
             }
             date_second = Math.abs(date_second);
-            
+
         } catch (ParseException e) {
             e.printStackTrace();
         }
 
         if(date_big){
-            foodDate.setText("D-" + date_second);
+            foodDate.setText("D-" + (date_second));
         } else {
-            foodDate.setText("D+" + date_second);
+            foodDate.setText("D+" + (date_second));
         }
 
         btnDelete.setOnClickListener(v -> {
@@ -122,9 +122,7 @@ public class ItemListAdapter extends BaseAdapter {
                         }
 
                         @Override
-                        public void onFailure(Call<FirstData> call, Throwable t) {
-                            Log.d("오류!", t.toString());
-                        }
+                        public void onFailure(Call<FirstData> call, Throwable t) {}
                     });
 
                     food.remove(position);

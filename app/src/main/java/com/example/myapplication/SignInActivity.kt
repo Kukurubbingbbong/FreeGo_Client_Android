@@ -39,6 +39,7 @@ class SignInActivity : AppCompatActivity() {
                                     intent.putExtra("name",IDText.text.toString())
                                     saveData()
                                     startActivity(intent)
+                                    finish()
                                 }
                             }
                             else {

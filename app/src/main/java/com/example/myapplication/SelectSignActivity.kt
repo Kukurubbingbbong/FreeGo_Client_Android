@@ -29,6 +29,7 @@ class SelectSignActivity : AppCompatActivity() {
 
         goSignIn.setOnClickListener{
             startActivity(Intent(this@SelectSignActivity, SignInActivity::class.java))
+            finish()
         }
 
         goSignUp.setOnClickListener {

@@ -53,7 +53,7 @@ class SplashActivity : AppCompatActivity() {
                 startActivity(Intent(this@SplashActivity, SelectSignActivity::class.java))
             }
             finish()
-        },4000)
+        },3000)
 
     }
     private fun getData(){

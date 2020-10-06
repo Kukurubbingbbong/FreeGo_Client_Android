@@ -25,6 +25,8 @@ class DetailActivity : AppCompatActivity() {
         Glide.with(applicationContext).load(intent.getStringExtra("img_link")).placeholder(R.drawable.loading).error(R.drawable.noimage).into(detailImage)
         val ingredient = intent.getStringExtra("p_name")
 
+        detailFoodTitle.text = ingredient
+
         var recipe = ArrayList<String>()
 
         if (ingredient != null) {

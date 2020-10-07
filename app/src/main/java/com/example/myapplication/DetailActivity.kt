@@ -23,7 +23,23 @@ class DetailActivity : AppCompatActivity() {
         setContentView(R.layout.activity_detail)
 
         Glide.with(applicationContext).load(intent.getStringExtra("img_link")).placeholder(R.drawable.loading).error(R.drawable.noimage).into(detailImage)
-        val ingredient = intent.getStringExtra("p_name")
+        var ingredient = intent.getStringExtra("p_name")
+
+        when {
+            ingredient.contains("으로 할 수 있는 요리 알려 줘") -> {
+                ingredient = ingredient.split("으로 할 수 있는 요리 알려 줘")[0]
+            }
+            ingredient.contains("로 할 수 있는 요리 알려 줘") -> {
+                ingredient = ingredient.split("로 할 수 있는 요리 알려 줘")[0]
+            }
+            ingredient.contains("으로 할 수 있는 음식 알려 줘") -> {
+                ingredient = ingredient.split("으로 할 수 있는 음식 알려 줘")[0]
+            }
+            ingredient.contains("로 할 수 있는 음식 알려 줘") -> {
+                ingredient = ingredient.split("로 할 수 있는 음식 알려 줘")[0]
+            }
+        }
+
 
         detailFoodTitle.text = ingredient
 

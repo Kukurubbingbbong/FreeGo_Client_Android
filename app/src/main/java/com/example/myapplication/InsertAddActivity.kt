@@ -49,7 +49,9 @@ class InsertAddActivity : AppCompatActivity() {
 
         insertNextButton.setOnClickListener {
             RetrofitHelper().getFridgeAPI().insertFood("nocode", InsertFoodBody(id, foodName, insertFoodCount.text.toString().toInt(), date)).enqueue(object : Callback<FirstData>{
-                override fun onFailure(call: Call<FirstData>, t: Throwable) {}
+                override fun onFailure(call: Call<FirstData>, t: Throwable) {
+                    Log.d("ERROR", t.toString())
+                }
 
                 override fun onResponse(call: Call<FirstData>, response: Response<FirstData>) {
                     if(response.isSuccessful){

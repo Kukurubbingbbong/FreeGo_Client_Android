@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.TextView;
 
 import com.example.myapplication.retrofit.DTO.Recipe;
 
@@ -37,9 +38,12 @@ public class RecipeAdapter extends BaseAdapter{
     }
 
     @Override
-    public View getView(int i, View view, ViewGroup viewGroup) {
+    public View getView(int position, View view, ViewGroup viewGroup) {
         @SuppressLint("ViewHolder") View convertView = LayoutInflater.from(context).inflate(R.layout.recipe_row,viewGroup, false);
 
+        TextView titleRecipe = convertView.findViewById(R.id.titleRecipe);
+
+        titleRecipe.setText(recipes.get(position));
 
         return convertView;
     }

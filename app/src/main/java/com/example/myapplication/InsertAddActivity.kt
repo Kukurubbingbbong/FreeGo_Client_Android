@@ -7,7 +7,6 @@ import android.widget.Toast
 import com.example.embeddedtest.retrofit.DTO.InsertFoodBody
 import com.example.myapplication.retrofit.API.RetrofitHelper
 import com.example.myapplication.retrofit.DTO.FirstData
-import kotlinx.android.synthetic.main.activity_fridge.*
 import kotlinx.android.synthetic.main.activity_insert_add.*
 import retrofit2.Call
 import retrofit2.Callback

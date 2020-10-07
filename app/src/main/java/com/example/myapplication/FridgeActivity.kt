@@ -1,25 +1,18 @@
 package com.example.myapplication
 
 import android.annotation.SuppressLint
-import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.speech.RecognitionListener
 import android.speech.RecognizerIntent
 import android.speech.SpeechRecognizer
-import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.Toast
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupActionBarWithNavController
-import androidx.navigation.ui.setupWithNavController
 import com.example.myapplication.retrofit.API.RetrofitHelper
 import com.example.myapplication.retrofit.DTO.Food
 import com.example.myapplication.retrofit.DTO.FoodData
@@ -27,7 +20,6 @@ import kotlinx.android.synthetic.main.activity_fridge.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import kotlin.concurrent.timer
 
 class FridgeActivity : AppCompatActivity() {
 

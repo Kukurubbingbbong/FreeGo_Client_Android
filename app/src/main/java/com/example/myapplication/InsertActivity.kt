@@ -2,11 +2,9 @@ package com.example.myapplication
 
 import android.app.DatePickerDialog
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import kotlinx.android.synthetic.main.activity_addfood.*
+import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_insert.*
-import java.text.SimpleDateFormat
 import java.util.*
 
 class InsertActivity : AppCompatActivity() {

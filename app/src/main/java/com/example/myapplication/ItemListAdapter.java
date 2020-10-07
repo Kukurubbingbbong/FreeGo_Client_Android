@@ -2,13 +2,10 @@ package com.example.myapplication;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -19,12 +16,10 @@ import com.example.myapplication.retrofit.API.FridgeAPI;
 import com.example.myapplication.retrofit.API.RetrofitHelper;
 import com.example.myapplication.retrofit.DTO.FirstData;
 import com.example.myapplication.retrofit.DTO.Food;
-import com.example.myapplication.retrofit.DTO.FoodData;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 
 import retrofit2.Call;

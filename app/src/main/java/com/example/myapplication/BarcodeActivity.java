@@ -2,13 +2,9 @@ package com.example.myapplication;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.ProgressBar;
 import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatActivity;
-
-
 import com.example.myapplication.retrofit.API.FridgeAPI;
 import com.example.myapplication.retrofit.API.RetrofitHelper;
 import com.example.myapplication.retrofit.DTO.BarCodeFoodInfo;

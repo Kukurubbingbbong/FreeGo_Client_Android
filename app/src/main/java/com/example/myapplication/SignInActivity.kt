@@ -40,12 +40,27 @@ class SignInActivity : AppCompatActivity() {
                                     saveData()
                                     startActivity(intent)
                                     finish()
+                                } else {
+                                    if(response.body()!!.message == "pwd is wrong") {
+                                        Toast.makeText(
+                                            this@SignInActivity,
+                                            "비밀번호가 틀렸습니다.",
+                                            Toast.LENGTH_LONG
+                                        ).show()
+                                        Log.d("TAG1", response.code().toString())
+                                        IDText.text = null
+                                        PwdText.text = null
+                                    } else {
+                                        Toast.makeText(this@SignInActivity, "아이디를 찾지 못했습니다.", Toast.LENGTH_LONG).show()
+                                        Log.d("TAG1", response.code().toString())
+                                        IDText.text = null
+                                        PwdText.text = null
+                                    }
                                 }
                             }
                             else {
                                 Toast.makeText(this@SignInActivity, "로그인에 실패했습니다", Toast.LENGTH_LONG).show()
                                 Log.d("TAG1", response.code().toString())
-                                passwordCheckText.text = null
                                 IDText.text = null
                                 PwdText.text = null
                             }

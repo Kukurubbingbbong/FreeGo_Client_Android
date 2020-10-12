@@ -4,9 +4,11 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
+import android.os.Handler
 import android.speech.RecognitionListener
 import android.speech.RecognizerIntent
 import android.speech.SpeechRecognizer
+import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.Toast
@@ -40,6 +42,7 @@ class FridgeActivity : AppCompatActivity() {
         if(id != "") {
            change()
         }
+
         itemList.setOnItemClickListener{ parent: AdapterView<*>, view: View, position: Int, l: Long ->
             val intent = Intent(this@FridgeActivity, DetailActivity::class.java)
             intent.putExtra("p_id", dataList[position].id)

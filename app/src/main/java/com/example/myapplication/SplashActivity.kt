@@ -33,6 +33,7 @@ class SplashActivity : AppCompatActivity() {
                     Callback<FirstData> {
                     override fun onFailure(call: Call<FirstData>, t: Throwable) {
                         Log.d("LOGIN", t.toString())
+                        Log.d("LOGIN", id)
                         Toast.makeText(this@SplashActivity, "인터넷 연결 없음\n인터넷을 연결해주세요!", Toast.LENGTH_LONG).show()
                     }
 

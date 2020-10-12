@@ -47,26 +47,41 @@ class InsertAddActivity : AppCompatActivity() {
         insertFoodDate.text = "D" + minus + ((todayDate.time - ex_date.time) / (24*60*60*1000))
 
         insertNextButton.setOnClickListener {
-            RetrofitHelper().getFridgeAPI().insertFood("nocode", InsertFoodBody(id, foodName, insertFoodCount.text.toString().toInt(), date)).enqueue(object : Callback<FirstData>{
-                override fun onFailure(call: Call<FirstData>, t: Throwable) {
-                    Log.d("ERROR", t.toString())
-                }
+            if(insertFoodCount.text.isNotEmpty()) {
+                RetrofitHelper().getFridgeAPI().insertFood(
+                    "nocode",
+                    InsertFoodBody(id, foodName, insertFoodCount.text.toString().toInt(), date)
+                ).enqueue(object : Callback<FirstData> {
+                    override fun onFailure(call: Call<FirstData>, t: Throwable) {
+                        Log.d("ERROR", t.toString())
+                    }
 
-                override fun onResponse(call: Call<FirstData>, response: Response<FirstData>) {
-                    if(response.isSuccessful){
-                        if(response.body()!!.code == 200){
-                            Toast.makeText(this@InsertAddActivity, "제품이 추가되었습니다", Toast.LENGTH_LONG).show()
-                            finish()
-                        } else {
-                            if(response.body()!!.message == "already exist"){
-                                Toast.makeText(this@InsertAddActivity,"이미 등록된 제품입니다", Toast.LENGTH_LONG).show()
+                    override fun onResponse(call: Call<FirstData>, response: Response<FirstData>) {
+                        if (response.isSuccessful) {
+                            if (response.body()!!.code == 200) {
+                                Toast.makeText(
+                                    this@InsertAddActivity,
+                                    "제품이 추가되었습니다",
+                                    Toast.LENGTH_LONG
+                                ).show()
                                 finish()
+                            } else {
+                                if (response.body()!!.message == "already exist") {
+                                    Toast.makeText(
+                                        this@InsertAddActivity,
+                                        "이미 등록된 제품입니다",
+                                        Toast.LENGTH_LONG
+                                    ).show()
+                                    finish()
+                                }
                             }
                         }
                     }
-                }
 
-            })
+                })
+            } else {
+                Toast.makeText(this@InsertAddActivity, "갯수를 적어주세요!", Toast.LENGTH_LONG).show()
+            }
         }
 
     }

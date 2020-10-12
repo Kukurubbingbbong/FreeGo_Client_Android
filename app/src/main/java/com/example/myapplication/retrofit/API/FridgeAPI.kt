@@ -2,10 +2,7 @@ package com.example.myapplication.retrofit.API
 
 import com.example.embeddedtest.retrofit.DTO.DeleteFoodBody
 import com.example.embeddedtest.retrofit.DTO.InsertFoodBody
-import com.example.myapplication.retrofit.DTO.BarCodeFoodInfo
-import com.example.myapplication.retrofit.DTO.FirstData
-import com.example.myapplication.retrofit.DTO.FoodData
-import com.example.myapplication.retrofit.DTO.Recipe
+import com.example.myapplication.retrofit.DTO.*
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -34,9 +31,7 @@ interface FridgeAPI {
 
     @PUT("/material/update")
     fun updateFood(
-        @Field("id") id : String,
-        @Field("p_name") p_name: String,
-        @Field("p_number") p_number: Int
+        @Body updateFood: UpdateFood
     ) : Call<FirstData>
 
     @HTTP(method = "DELETE", path = "/material/delete", hasBody = true)

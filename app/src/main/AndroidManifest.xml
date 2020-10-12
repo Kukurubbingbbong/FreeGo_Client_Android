@@ -3,7 +3,7 @@
     package="com.example.myapplication">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.RECORD_AUDIO"/>
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
 
     <application
         android:allowBackup="true"
@@ -14,14 +14,15 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".InsertAddActivity"></activity>
+        <activity android:name=".CountChangeActivity"></activity>
+        <activity android:name=".InsertAddActivity" />
         <activity android:name=".BarcodeActivity" />
         <activity android:name=".AddFoodActivity" />
         <activity android:name=".SelectActivity" />
         <activity android:name=".InsertActivity" />
         <activity android:name=".SignInActivity" />
         <activity android:name=".SelectSignActivity" />
-        <activity android:name=".DetailActivity"></activity>
+        <activity android:name=".DetailActivity" />
         <activity android:name=".WelcomeActivity" />
         <activity android:name=".RegisterActivity" />
         <activity android:name=".GuideActivity" />

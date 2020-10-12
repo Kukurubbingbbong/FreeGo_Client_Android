@@ -46,9 +46,11 @@ class FridgeActivity : AppCompatActivity() {
             intent.putExtra("p_name",dataList[position].p_name)
             intent.putExtra("p_ex_date", dataList[position].p_ex_date)
             intent.putExtra("p_number",dataList[position].p_number)
-            intent.putExtra("img_ling", dataList[position].img_link)
+            intent.putExtra("img_link", dataList[position].img_link)
             startActivity(intent)
         }
+
+        itemList.onItemLongClickListener = longClickListener
 
         insertButton.setOnClickListener {
             val intent = Intent(this@FridgeActivity, SelectActivity::class.java)
@@ -67,6 +69,18 @@ class FridgeActivity : AppCompatActivity() {
 
         }
     }
+
+    private val longClickListener =
+        AdapterView.OnItemLongClickListener { parent, view, position, id ->
+            val intent = Intent(this@FridgeActivity, CountChangeActivity::class.java)
+            intent.putExtra("p_id", dataList[position].id)
+            intent.putExtra("p_name",dataList[position].p_name)
+            intent.putExtra("p_ex_date", dataList[position].p_ex_date)
+            intent.putExtra("p_number",dataList[position].p_number)
+            intent.putExtra("img_link", dataList[position].img_link)
+            startActivity(intent)
+            true
+        }
 
     private val listener = object : RecognitionListener {
         override fun onReadyForSpeech(params: Bundle?) {

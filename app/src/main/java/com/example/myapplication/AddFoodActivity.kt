@@ -24,7 +24,7 @@ class AddFoodActivity : AppCompatActivity() {
         setContentView(R.layout.activity_addfood)
 
         val data = intent.getStringArrayListExtra("data")
-        Glide.with(this@AddFoodActivity).load(data[4]).placeholder(R.drawable.ic_launcher_background).error(R.drawable.ic_launcher_foreground).into(imgFood)
+        Glide.with(this@AddFoodActivity).load(data[4]).placeholder(R.drawable.loading).error(R.drawable.noimage).into(imgFood)
         if(data != null){
             foodText.text = data[1]
         }

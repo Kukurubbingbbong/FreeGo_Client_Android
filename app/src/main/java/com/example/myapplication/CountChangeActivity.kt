@@ -22,7 +22,7 @@ class CountChangeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_count_change)
 
-        Glide.with(this@CountChangeActivity).load(intent.getStringExtra("img_ling")).placeholder(R.drawable.loading).error(R.drawable.noimage).into(updateImgFood)
+        Glide.with(this@CountChangeActivity).load(intent.getStringExtra("img_link")).placeholder(R.drawable.loading).error(R.drawable.noimage).into(updateImgFood)
 
         updateFoodText.text = intent.getStringExtra("p_name")
 

@@ -16,7 +16,6 @@ import retrofit2.Response
 import java.text.SimpleDateFormat
 import java.util.*
 
-@Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
 class AddFoodActivity : AppCompatActivity() {
     @SuppressLint("SimpleDateFormat", "SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -94,6 +93,7 @@ class AddFoodActivity : AppCompatActivity() {
                                     )
                                         .show()
                                     finish()
+
                                 } else {
                                     if (response.body()!!.message == "already exist") {
                                         Toast.makeText(

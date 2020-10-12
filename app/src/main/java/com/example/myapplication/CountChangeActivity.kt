@@ -72,6 +72,7 @@ class CountChangeActivity : AppCompatActivity() {
                     if (response.isSuccessful){
                         if (response.code() == 200){
                             if(response.body()!!.code == 200){
+                                Toast.makeText(this@CountChangeActivity, "개수 변경에 성공하였습니다", Toast.LENGTH_LONG).show()
                                 finish()
                             } else {
                                 Toast.makeText(this@CountChangeActivity, "개수 변경에 실패하였습니다", Toast.LENGTH_LONG).show()

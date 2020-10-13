@@ -22,6 +22,8 @@ public class BarcodeActivity extends AppCompatActivity {
     private CaptureManager capture;
     private DecoratedBarcodeView barcodeScannerView;
 
+    private boolean flag = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -63,38 +65,44 @@ public class BarcodeActivity extends AppCompatActivity {
 
 
     public void readBarcode(String barcode){
-        if(barcode.length() == 13) {
-            ProgressBar progressBar = findViewById(R.id.barcodeProgress);
-            progressBar.setAlpha(1f);
-            FridgeAPI fridgeAPI = new RetrofitHelper().getFridgeAPI();
-            Intent getInt = getIntent();
-            fridgeAPI.barCodeShow(barcode).enqueue(new Callback<BarCodeFoodInfo>() {
-                @Override
-                public void onResponse(Call<BarCodeFoodInfo> call, Response<BarCodeFoodInfo> response) {
-                    if (response.isSuccessful()) {
-                        if (response.body() != null) {
-                            if(response.body().getCode() == 200) {
-                                if (response.body().getData() != null) {
-                                    Intent intent = new Intent(getApplicationContext(), AddFoodActivity.class);
-                                    intent.putExtra("data", response.body().getData());
-                                    intent.putExtra("barcode", barcode);
-                                    intent.putExtra("id", getInt.getStringExtra("id"));
-                                    startActivity(intent);
+        if(!flag) {
+            if(barcode.length() == 13) {
+                ProgressBar progressBar = findViewById(R.id.barcodeProgress);
+                progressBar.setAlpha(1f);
+                flag = true;
+                FridgeAPI fridgeAPI = new RetrofitHelper().getFridgeAPI();
+                Intent getInt = getIntent();
+                fridgeAPI.barCodeShow(barcode).enqueue(new Callback<BarCodeFoodInfo>() {
+                    @Override
+                    public void onResponse(Call<BarCodeFoodInfo> call, Response<BarCodeFoodInfo> response) {
+                        if (response.isSuccessful()) {
+                            if (response.body() != null) {
+                                if (response.body().getCode() == 200) {
+                                    if (response.body().getData() != null) {
+                                        Intent intent = new Intent(getApplicationContext(), AddFoodActivity.class);
+                                        intent.putExtra("data", response.body().getData());
+                                        intent.putExtra("barcode", barcode);
+                                        intent.putExtra("id", getInt.getStringExtra("id"));
+                                        startActivity(intent);
+                                        finish();
+
+                                    }
+
+                                } else {
+                                    progressBar.setAlpha(0f);
+                                    Toast.makeText(getApplicationContext(), "등록되지 않은 식품입니다. 직접 입력해주세요", Toast.LENGTH_LONG).show();
                                     finish();
                                 }
-
-                            } else {
-                                progressBar.setAlpha(0f);
-                                Toast.makeText(getApplicationContext(), "등록되지 않은 식품입니다. 직접 입력해주세요", Toast.LENGTH_LONG).show();
-                                finish();
                             }
                         }
                     }
-                }
 
-                @Override
-                public void onFailure(Call<BarCodeFoodInfo> call, Throwable t) {}
-            });
+
+                    @Override
+                    public void onFailure(Call<BarCodeFoodInfo> call, Throwable t) {
+                    }
+                });
+            }
         }
     }
 
